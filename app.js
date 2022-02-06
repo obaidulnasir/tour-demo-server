@@ -82,6 +82,15 @@ async function run() {
         const result = await bookingCollection.find(query).toArray();
         // console.log(result);
         res.send(result);
+      });
+
+      //DELETE Single Order
+      app.delete('/deleteBooking/:id', async (req, res)=>{
+        const deleteMyBooking = req.params.id;
+        // console.log(deleteMyBooking)
+        const query = {_id: ObjectId(deleteMyBooking)};
+        const result = await bookingCollection.deleteOne(query);
+        res.send(result);
       })
 
     }
